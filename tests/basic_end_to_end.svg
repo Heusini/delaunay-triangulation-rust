@@ -1,0 +1,8 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<rect fill="transparent" height="1" stroke="rgb(20,190,106)" stroke-width="1" width="1" x="57" y="42"/>
+<rect fill="transparent" height="1" stroke="rgb(223,132,226)" stroke-width="1" width="1" x="50" y="50"/>
+<rect fill="transparent" height="1" stroke="rgb(69,98,180)" stroke-width="1" width="1" x="50" y="38"/>
+<path d="M50,0 L50,100" fill="transparent" stroke="rgb(0,0,0)" stroke-width="1"/>
+<path d="M0,50 L100,50" fill="transparent" stroke="rgb(0,0,0)" stroke-width="1"/>
+<path d="M57,42 L50,38 L50,50 L57,42" fill="transparent" stroke="rgb(0,114,105)" stroke-width="1"/>
+</svg>
