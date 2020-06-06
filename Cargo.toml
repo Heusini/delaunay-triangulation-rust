@@ -1,5 +1,5 @@
 [package]
-name = "delauny-triangulation-rust"
+name = "delaunay"
 version = "0.1.0"
 authors = ["sebastian"]
 edition = "2018"

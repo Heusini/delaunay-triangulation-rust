@@ -1,15 +1,14 @@
-use crate::objects::edge;
-use crate::objects::point;
-use crate::objects::triangle;
+pub mod numeric;
+pub mod objects;
 
 struct Delauny {
-    triangles: Vec<triangle::Triangle>,
-    edges: Vec<edge::Edge>,
-    points: Vec<point::Point>,
+    triangles: Vec<objects::triangle::Triangle>,
+    edges: Vec<objects::edge::Edge>,
+    points: Vec<objects::point::Point>,
 }
 
-pub fn triangulate(vertices: &Vec<point::Point>) -> Vec<triangle::Triangle> {
-    let mut triangles: Vec<triangle::Triangle> = vec![];
+pub fn triangulate(vertices: &Vec<objects::point::Point>) -> Vec<objects::triangle::Triangle> {
+    let mut triangles: Vec<objects::triangle::Triangle> = vec![];
     let mut min_x = vertices[0].x;
     let mut min_y = vertices[0].y;
 
@@ -41,25 +40,25 @@ pub fn triangulate(vertices: &Vec<point::Point>) -> Vec<triangle::Triangle> {
     let mid_x = (min_x + max_x) * 0.5;
     let mid_y = (min_y + max_y) * 0.5;
 
-    let p1 = point::Point {
+    let p1 = objects::point::Point {
         x: mid_x - 20.0 * delta_max,
         y: mid_y - delta_max,
     };
 
-    let p2 = point::Point {
+    let p2 = objects::point::Point {
         x: mid_x,
         y: mid_y + 20.0 * delta_max,
     };
 
-    let p3 = point::Point {
+    let p3 = objects::point::Point {
         x: mid_x + 20.0 * delta_max,
         y: mid_y - delta_max,
     };
 
-    triangles.push(triangle::Triangle::new(p1, p2, p3));
+    triangles.push(objects::triangle::Triangle::new(p1, p2, p3));
 
     for vert in vertices {
-        let mut edges: Vec<edge::Edge> = Vec::new();
+        let mut edges: Vec<objects::edge::Edge> = Vec::new();
 
         triangles.retain(|triangle| {
             if triangle.circum_circle_contains(vert) {
@@ -90,7 +89,7 @@ pub fn triangulate(vertices: &Vec<point::Point>) -> Vec<triangle::Triangle> {
         edges.retain(|_| (bad_edges[i], i += 1).0);
 
         for edge in &edges {
-            triangles.push(triangle::Triangle::new(edge.p1, edge.p2, *vert));
+            triangles.push(objects::triangle::Triangle::new(edge.p1, edge.p2, *vert));
         }
     }
 
