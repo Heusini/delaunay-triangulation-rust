@@ -7,8 +7,20 @@ struct Delauny {
     points: Vec<objects::point::Point>,
 }
 
+#[test]
+fn test_empty_pointlist() {
+    let pointlist = Vec::<objects::point::Point>::new();
+    let triangles = triangulate(&pointlist);
+
+    assert_eq!(triangles.len(), 0);
+}
+
 pub fn triangulate(vertices: &Vec<objects::point::Point>) -> Vec<objects::triangle::Triangle> {
-    let mut triangles: Vec<objects::triangle::Triangle> = vec![];
+    let mut triangles: Vec<objects::triangle::Triangle> = Vec::new();
+    if vertices.len() < 3 {
+        return triangles;
+    }
+
     let mut min_x = vertices[0].x;
     let mut min_y = vertices[0].y;
 
